@@ -83,7 +83,12 @@ public class GunScript : MonoBehaviour
         if (collision.collider.CompareTag("Mag"))
         {
             _bulletCount = _bulletCountMax;
+            collision.gameObject.SetActive(false);
         }
+        else {
+            return;
+        }
+    
     }
     // Update is called once per frame
     void Update()

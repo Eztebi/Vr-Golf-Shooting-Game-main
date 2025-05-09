@@ -9,3 +9,8 @@ public class EnemyData : ScriptableObject
     public GameObject projectilePrefab;
     public AttackSO attack;
 }
+
+enum EnemyType{
+    ranged,
+    meele
+}

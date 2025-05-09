@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public interface EnemyFactory
+public abstract class EnemyFactory
 {
-    GameObject CreateEnemy(EnemyData data, Vector3 position);
+   // public abstract IEnemyCreator CreateEnemy(EnemyData data, Vector3 position);
 }
-//prueba git

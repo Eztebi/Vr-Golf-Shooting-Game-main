@@ -2,11 +2,16 @@
 
 public class BossEnemyFactory : EnemyFactory
 {
+    private EnemyData[] bossData;
 
-    //public override IEnemyCreator CreateEnemy(EnemyData data, Vector3 position)
-    //{
-    //    GameObject enemy = GameObject.Instantiate(data.prefab, position, Quaternion.identity);
-    //    enemy.name = $"Boss_{data.enemyName}";
-    //    return enemy;
-    //}
+    public BossEnemyFactory(EnemyData[] bossData)
+    {
+        this.bossData = bossData;
+    }
+
+    public override EnemyData GetEnemyData()
+    {
+        if (bossData.Length == 0) return null;
+        return bossData[Random.Range(0, bossData.Length)];
+    }
 }

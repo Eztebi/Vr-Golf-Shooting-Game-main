@@ -10,7 +10,3 @@ public class EnemyData : ScriptableObject
     public AttackSO attack;
 }
 
-enum EnemyType{
-    ranged,
-    meele
-}

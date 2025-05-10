@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class MeleeMinionFactory : MinionEnemyFactory
+public class MeleeMinionFactory : MinionFactory
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public MeleeMinionFactory(EnemyData[] meleeData) : base(meleeData) { }
 
-    // Update is called once per frame
-    void Update()
+    public override EnemyData GetEnemyData()
     {
-        
+        if (minionData.Length == 0) return null;
+        return minionData[Random.Range(0, minionData.Length)];
     }
 }

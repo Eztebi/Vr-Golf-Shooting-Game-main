@@ -1,21 +1,11 @@
 using UnityEngine;
 
-public class MinionEnemyFactory : EnemyFactory
+public abstract class MinionFactory : EnemyFactory
 {
-    public GameObject CreateEnemy(EnemyData data, Vector3 position)
+    protected EnemyData[] minionData;
+
+    public MinionFactory(EnemyData[] minionData)
     {
-        GameObject enemy = GameObject.Instantiate(data.prefab, position, Quaternion.identity);
-        enemy.name = $"Normal_{data.enemyName}";
-        return enemy;
+        this.minionData = minionData;
     }
-
-    //public override IEnemyCreator CreateEnemy()
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public override IEnemyCreator CreateEnemy(EnemyData data, Vector3 position)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }

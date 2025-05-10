@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class RangedMinionFactory : MinionEnemyFactory
+public class RangedMinionFactory : MinionFactory
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public RangedMinionFactory(EnemyData[] rangedData) : base(rangedData) { }
 
-    // Update is called once per frame
-    void Update()
+    public override EnemyData GetEnemyData()
     {
-        
+        if (minionData.Length == 0) return null;
+        return minionData[Random.Range(0, minionData.Length)];
     }
 }

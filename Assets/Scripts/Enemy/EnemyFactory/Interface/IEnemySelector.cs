@@ -1,5 +1,9 @@
 
-    public interface IEnemySelector
+using UnityEngine;
+
+public interface IEnemySelector
     {
-        EnemyData GetEnemyData(EnemyType enemyType);
-    }
+
+        EnemyData GetEnemyData(EnemyFactory enemyType);
+        EnemyData GetEnemyData(MinioEnemynFactory enemyType);
+}

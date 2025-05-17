@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeleeMinionFactory : MinionFactory
+public class MeleeMinionFactory : MinioEnemynFactory
 {
     public MeleeMinionFactory(EnemyData[] meleeData) : base(meleeData) { }
 

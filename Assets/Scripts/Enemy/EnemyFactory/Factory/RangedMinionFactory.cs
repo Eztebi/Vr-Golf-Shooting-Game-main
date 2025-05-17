@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RangedMinionFactory : MinioEnemynFactory
+public class RangedMinionFactory : MinionEnemynFactory
 {
     public RangedMinionFactory(EnemyData[] rangedData) : base(rangedData) { }
 

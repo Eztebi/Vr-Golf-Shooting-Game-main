@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class EnemySelector : IEnemySelector
 {
-    private MinioEnemynFactory meleeFactory;
-    private MinioEnemynFactory rangedFactory;
+    private MinionEnemynFactory meleeFactory;
+    private MinionEnemynFactory rangedFactory;
     private BossEnemyFactory bossFactory;
 
-    public EnemySelector(MinioEnemynFactory minionmeleeFactory, MinioEnemynFactory minionrangedFactory, BossEnemyFactory bossFactory)
+    public EnemySelector(MinionEnemynFactory minionmeleeFactory, MinionEnemynFactory minionrangedFactory, BossEnemyFactory bossFactory)
     {
         this.meleeFactory = minionmeleeFactory;
         this.rangedFactory = minionrangedFactory;
@@ -57,7 +57,7 @@ public class EnemySelector : IEnemySelector
         throw new System.NotImplementedException();
     }
 
-    public EnemyData GetEnemyData(MinioEnemynFactory enemyType)
+    public EnemyData GetEnemyData(MinionEnemynFactory enemyType)
     {
         throw new System.NotImplementedException();
     }

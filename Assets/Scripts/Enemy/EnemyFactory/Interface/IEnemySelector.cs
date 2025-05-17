@@ -5,5 +5,5 @@ public interface IEnemySelector
     {
 
         EnemyData GetEnemyData(EnemyFactory enemyType);
-        EnemyData GetEnemyData(MinioEnemynFactory enemyType);
+        EnemyData GetEnemyData(MinionEnemynFactory enemyType);
 }

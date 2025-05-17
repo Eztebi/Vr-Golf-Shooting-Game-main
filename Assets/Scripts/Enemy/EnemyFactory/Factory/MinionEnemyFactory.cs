@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public abstract class MinioEnemynFactory : EnemyFactory
+public abstract class MinionEnemynFactory : EnemyFactory
 {
     protected EnemyData[] minionData;
 
-    public MinioEnemynFactory(EnemyData[] minionData)
+    public MinionEnemynFactory(EnemyData[] minionData)
     {
         this.minionData = minionData;
     }

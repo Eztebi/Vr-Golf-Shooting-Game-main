@@ -32,7 +32,7 @@ public class EnemySpawner : IEnemySelector
             GameObject.Instantiate(data.prefab, position, Quaternion.identity).name = data.enemyName;
         }
     }
-    public EnemyData GetMinionRandom(RangedMinionFactory rangedMinion, MeleeMinionFactory meleeMinion)
+    private EnemyData GetMinionRandom(RangedMinionFactory rangedMinion, MeleeMinionFactory meleeMinion)
     {
         int rand = Random.Range(0, 2);
         switch (rand)
@@ -51,7 +51,7 @@ public class EnemySpawner : IEnemySelector
         return enemyType.GetEnemyData();
     }
 
-    public EnemyData GetEnemyData(MinioEnemynFactory enemyType)
+    public EnemyData GetEnemyData(MinionEnemynFactory enemyType)
     {
         return enemyType.GetEnemyData();
     }

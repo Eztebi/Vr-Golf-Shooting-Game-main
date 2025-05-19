@@ -33,6 +33,10 @@ public class Bullet : MonoBehaviour
         {
 
         }
+        else if (collision.collider.CompareTag("Enemy"))
+        {
+
+        }
         else
         {
             DeactivateNoHit();

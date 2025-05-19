@@ -1,12 +1,27 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemySpawner : IEnemySelector
+public class EnemySpawner : MonoBehaviour, IEnemySelector
 {
+
+    [Header("Enemy Data")]
+    [SerializeField] private EnemyData[] meleeEnemies;
+    [SerializeField] private EnemyData[] rangedEnemies;
+    [SerializeField] private EnemyData[] bossEnemies;
+
     private MeleeMinionFactory meleeMinionFactory;
     private RangedMinionFactory rangedMinionFactory;
     private BossEnemyFactory bossEnemyFactory;
 
+    SpawnPoints spawnPoints;
+    private void Awake()
+    {
+        // Crear las fábricas con los datos
+        meleeMinionFactory = new MeleeMinionFactory(meleeEnemies);
+        rangedMinionFactory = new RangedMinionFactory(rangedEnemies);
+        bossEnemyFactory = new BossEnemyFactory(bossEnemies);
+        spawnPoints = GetComponentInChildren<SpawnPoints>();
+    }
     public EnemySpawner(MeleeMinionFactory meleeMinion, RangedMinionFactory rangedMinion, BossEnemyFactory bossFactory)
     {
         this.meleeMinionFactory = meleeMinion;
@@ -54,6 +69,10 @@ public class EnemySpawner : IEnemySelector
     public EnemyData GetEnemyData(MinionEnemynFactory enemyType)
     {
         return enemyType.GetEnemyData();
+    }
+    private void Update()
+    {
+        
     }
 }
 

@@ -14,7 +14,7 @@ public class GunScript : MonoBehaviour
     [SerializeField] private Transform muzzlePosition;
     [SerializeField] private float muzzleVelocity;
     [SerializeField] private float bulletCooldown;
-    [SerializeField]private int _bulletCount;
+    [SerializeField] private int _bulletCount;
     [SerializeField] private int _bulletCountMax;
     private IObjectPool<Bullet> objPool;
 
@@ -22,16 +22,20 @@ public class GunScript : MonoBehaviour
     [SerializeField] private int _defaultCapacityPool = 20;
     [SerializeField] private int _maxSizePool = 40;
 
-    [SerializeField]XRGrabInteractable grabbable;
+    [SerializeField] XRGrabInteractable grabbable;
+
+    private bool isHeld = false;
+
     private Bullet CreateBullet()
     {
         Bullet bulletInstance = Instantiate(_bulletPrefab);
-        bulletInstance.ObjectPool = objPool;    
+        bulletInstance.ObjectPool = objPool;
         return bulletInstance;
     }
+
     private void OnGetFromPool(Bullet pooledObject)
     {
-        pooledObject.gameObject.SetActive(true);    
+        pooledObject.gameObject.SetActive(true);
     }
 
     private void OnReleaseToPool(Bullet pooledObject)
@@ -43,33 +47,38 @@ public class GunScript : MonoBehaviour
     {
         Destroy(pooledObject.gameObject);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         _bulletCount = _bulletCountMax;
         objPool = new ObjectPool<Bullet>(CreateBullet, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, _defaultCapacityPool, _maxSizePool);
+
         grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(Shoot);
+        grabbable.selectEntered.AddListener(OnSelectEntered);
+        grabbable.selectExited.AddListener(OnSelectExited);
     }
 
-    void Awake()
+    private void OnSelectEntered(SelectEnterEventArgs args)
     {
-       
+        isHeld = true;
     }
 
+    private void OnSelectExited(SelectExitEventArgs args)
+    {
+        isHeld = false;
+    }
 
     void Shoot(ActivateEventArgs arg)
     {
-        if (objPool != null && _bulletCount>0)
+        if (objPool != null && _bulletCount > 0)
         {
             Bullet bullObj = objPool.Get();
-
-            if (bullObj == null) return; 
+            if (bullObj == null) return;
 
             bullObj.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
 
             Rigidbody rb = bullObj.GetComponent<Rigidbody>();
-            rb.linearVelocity = Vector3.zero; 
             rb.angularVelocity = Vector3.zero;
             rb.AddForce(bullObj.transform.forward * muzzleVelocity, ForceMode.Impulse);
 
@@ -85,18 +94,16 @@ public class GunScript : MonoBehaviour
             _bulletCount = _bulletCountMax;
             collision.gameObject.SetActive(false);
         }
-        else {
-            return;
-        }
-    
     }
-    // Update is called once per frame
+
     void Update()
     {
-        if(grabbable != this.gameObject)
+        if (!isHeld)
         {
-            this.transform.position = GunPos.position;
-            this.transform.rotation = GunPos.rotation;
+           
+           this.transform.position = GunPos.position;
+           this.transform.rotation = GunPos.rotation;
+            //rb.MoveRotation(GunPos.rotation);
         }
     }
 }

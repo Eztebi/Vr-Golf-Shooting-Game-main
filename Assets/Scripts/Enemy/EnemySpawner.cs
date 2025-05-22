@@ -34,7 +34,13 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
       
         if (data != null)
         {
-            GameObject.Instantiate(data.prefab, position, Quaternion.identity).name = data.enemyName;
+            GameObject enemyObj = GameObject.Instantiate(data.prefab, position, Quaternion.identity);
+            enemyObj.name = data.enemyName;
+            EnemyController controller = enemyObj.GetComponent<EnemyController>();
+            if (controller != null)
+            {
+                controller._enemyData = data;
+            }
         }
     }
 
@@ -44,7 +50,14 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
 
         if (data != null)
         {
-            GameObject.Instantiate(data.prefab, position, Quaternion.identity).name = data.enemyName;
+            GameObject bossObj = Instantiate(data.prefab, position, Quaternion.identity);
+            bossObj.name = data.enemyName;
+
+            EnemyController controller = bossObj.GetComponent<EnemyController>();
+            if (controller != null)
+            {
+                controller.enemyData = data;
+            }
         }
     }
     private EnemyData GetMinionRandom(RangedMinionFactory rangedMinion, MeleeMinionFactory meleeMinion)

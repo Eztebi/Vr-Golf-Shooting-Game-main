@@ -28,6 +28,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_target !=null)
+        {
+            Attack();
+        }
         if (Vector3.Distance(transform.position, _target.position) < 10f)
         {
             Attack();
@@ -51,5 +55,16 @@ public class EnemyController : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    public void RecieveDamage(int damage)
+    {
+        Die();
+        if (_enemyData != null)
+        {
+            _currentHealth -= damage;
+            Debug.Log(_currentHealth);
+        }
+        Die();
     }
 }

@@ -9,13 +9,17 @@ public class SpawnPoints : MonoBehaviour
     {
         
     }
-    public SpawnPoint NextPoint(List<SpawnPoint> points)
+    public SpawnPoint NextPoint()
     {
         foreach (SpawnPoint t in points) {
             if (t.hasEnemy == false)
                 return t;   
                 }
         return null;
+    }
+    public void FreePoint()
+    {
+
     }
     // Update is called once per frame
     void Update()

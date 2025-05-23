@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float dealyDeactivation = 3f;
+    [SerializeField] private int damage;
     private IObjectPool<Bullet> objPool;
 
     public IObjectPool<Bullet> ObjectPool { set => objPool = value; }
@@ -35,7 +36,8 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Enemy"))
         {
-
+            EnemyController enemy = collision.collider.GetComponent<EnemyController>();
+            enemy.RecieveDamage(damage);
         }
         else
         {

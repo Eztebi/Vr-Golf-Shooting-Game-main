@@ -1,5 +1,7 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class EnemySpawner : MonoBehaviour, IEnemySelector
 {
@@ -13,7 +15,11 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
     private RangedMinionFactory rangedMinionFactory;
     private BossEnemyFactory bossEnemyFactory;
 
-    SpawnPoints spawnPoints;
+    [SerializeField]private SpawnPoints spawnPoints;
+
+    [SerializeField] private bool roundStart = true;
+    [SerializeField] private float minionDelay = 3f;
+    private float timeToSpawnMinion=0f;
     private void Awake()
     {
         // Crear las fábricas con los datos
@@ -22,6 +28,7 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
         bossEnemyFactory = new BossEnemyFactory(bossEnemies);
         spawnPoints = GetComponentInChildren<SpawnPoints>();
     }
+
     public EnemySpawner(MeleeMinionFactory meleeMinion, RangedMinionFactory rangedMinion, BossEnemyFactory bossFactory)
     {
         this.meleeMinionFactory = meleeMinion;
@@ -56,13 +63,13 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
             EnemyController controller = bossObj.GetComponent<EnemyController>();
             if (controller != null)
             {
-                controller.enemyData = data;
+                controller._enemyData = data;
             }
         }
     }
     private EnemyData GetMinionRandom(RangedMinionFactory rangedMinion, MeleeMinionFactory meleeMinion)
     {
-        int rand = Random.Range(0, 2);
+        int rand = UnityEngine.Random.Range(0, 2);
         switch (rand)
         {
             case 0:
@@ -85,7 +92,22 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
     }
     private void Update()
     {
-        
+        if(roundStart)
+        {
+            if (timeToSpawnMinion <= minionDelay)
+            {
+                timeToSpawnMinion += Time.deltaTime;
+            }
+            else
+            {
+                SpawnPoint position = spawnPoints.NextPoint();
+                if (position != null)
+                {
+                    SpawnMinionEnemy(position.transform.position);
+                    timeToSpawnMinion = 0;
+                }
+            }
+        }
     }
 }
 

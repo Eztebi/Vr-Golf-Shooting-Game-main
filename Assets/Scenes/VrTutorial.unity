@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880d0c9c69519614f93308331d6641c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dealyDeactivation: 3
   damage: 10
 --- !u!65 &170762833
 BoxCollider:
@@ -1248,6 +1249,7 @@ GameObject:
   - component: {fileID: 1176340700}
   - component: {fileID: 1176340699}
   - component: {fileID: 1176340701}
+  - component: {fileID: 1176340702}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -1308,6 +1310,27 @@ MonoBehaviour:
   - {fileID: 260909090}
   - {fileID: 1068521478}
   - {fileID: 937418071}
+--- !u!114 &1176340702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176340698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91957b29c69cec4899d29fb9d77caf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 0}
+  muzzlePosition: {fileID: 0}
+  muzzleVelocity: 0
+  bulletCooldown: 0
+  _bulletCount: 0
+  _bulletCountMax: 0
+  collectionCheck: 1
+  _defaultCapacityPool: 20
+  _maxSizePool: 40
 --- !u!1 &1235867562
 GameObject:
   m_ObjectHideFlags: 0

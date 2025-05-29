@@ -91,8 +91,9 @@ public class GunScript : MonoBehaviour
     {
         if (collision.collider.CompareTag("Mag"))
         {
+            Magazines mag = collision.collider.GetComponent<Magazines>();
             _bulletCount = _bulletCountMax;
-            collision.gameObject.SetActive(false);
+            mag.DeactivateHit();
         }
     }
 

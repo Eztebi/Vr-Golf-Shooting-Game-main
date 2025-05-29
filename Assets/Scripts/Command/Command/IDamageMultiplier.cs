@@ -7,4 +7,8 @@ public class IDamageMultiplier : ICommand<Bullet>
         throw new System.NotImplementedException();
     }
 
+    public void Undo()
+    {
+        throw new System.NotImplementedException();
+    }
 }

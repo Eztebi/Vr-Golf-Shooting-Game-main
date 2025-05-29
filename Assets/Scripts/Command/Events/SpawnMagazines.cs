@@ -9,7 +9,7 @@ public class SpawnMagazines : MonoBehaviour
     [SerializeField] private int _defaultCapacityPool = 20;
     [SerializeField] private int _maxSizePool = 40;
     [SerializeField] private List<GameObject> positionMags;
-    Magazines magPrefabs;
+    public Magazines magPrefabs;
 
     #region Objectpool creation
     private Magazines CreateMag()

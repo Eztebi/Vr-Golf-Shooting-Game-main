@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class IDamageMultiplier : ICommand<Bullet>
+public class IDamageMultiplier : ICommand
 {
-    public void Execute(Bullet clase)
+    public void Execute()
     {
         throw new System.NotImplementedException();
     }

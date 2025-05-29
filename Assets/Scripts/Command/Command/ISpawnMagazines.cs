@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class ISpawnMagazines : ICommand<SpawnMagazines>
+public class ISpawnMagazines : ICommand
 {
     SpawnMagazines spawnMags;
-    GameObject prefabs;
-
-    public ISpawnMagazines(SpawnMagazines spawnMags, GameObject prefabs)
+    Magazines prefabs;
+    
+    public ISpawnMagazines(SpawnMagazines spawnMags, Magazines prefabs)
     {
         this.spawnMags = spawnMags;
         this.prefabs = prefabs;
     }
 
-    public void Execute(SpawnMagazines clase)
+    public void Execute()
     {
         spawnMags.Spawn();
     }
 
     public void Undo()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

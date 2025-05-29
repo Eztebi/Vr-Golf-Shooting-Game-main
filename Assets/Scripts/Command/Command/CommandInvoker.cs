@@ -8,7 +8,7 @@ public class CommandInvoker
     
     public static void ExecuteCommand(ICommand command)
     {
-        command.Execute(command);
+        command.Execute();
         undoStack.Push(command);
     }
 
@@ -17,7 +17,7 @@ public class CommandInvoker
         if(undoStack.Count > 0)
         {
             ICommand activeCommand = undoStack.Pop();
-            //activeCommand.Undo();
+            activeCommand.Undo();
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created

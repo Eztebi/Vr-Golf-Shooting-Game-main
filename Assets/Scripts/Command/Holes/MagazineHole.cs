@@ -17,6 +17,7 @@ public class MagazineHole : MonoBehaviour
                 CommandInvoker.ExecuteCommand(command);
             }
         }
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

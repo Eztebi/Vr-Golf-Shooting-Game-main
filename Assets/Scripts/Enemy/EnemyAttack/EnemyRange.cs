@@ -22,7 +22,7 @@ public class RangedAttackSO : AttackSO
 
             if (timer > delayShoot)
             {
-                Shoot(user,target);
+                //Shoot(user,target);
                 //Transform firePoint = user.transform.Find("FirePoint") ?? user.transform;
                 //GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 

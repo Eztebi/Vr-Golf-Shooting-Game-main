@@ -5,8 +5,11 @@ using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
+    GunScript gun;
     [SerializeField] private float dealyDeactivation = 3f;
     [SerializeField] private int damage;
+    private int tempDamage;
+    [SerializeField] private bool time;
     private IObjectPool<Bullet> objPool;
 
     public IObjectPool<Bullet> ObjectPool { set => objPool = value; }
@@ -48,7 +51,8 @@ public class Bullet : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        tempDamage = damage;
+        gun = GetComponentInParent<GunScript>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,22 @@ public class Bullet : MonoBehaviour
             StartCoroutine(TimeDeactivation(dealyDeactivation));
             return;
         }
+        if (!gun.isDamageMult)
+        {
+            damage = tempDamage;
+        }
+        else
+        {
+            damage = (int)gun.damageMultiplier;
+        }
+        
 
     }
+
+    public void AddDamage(int dmg)
+    {
+        gun.isDamageMult = true;
+        damage = dmg;
+    }
+
 }

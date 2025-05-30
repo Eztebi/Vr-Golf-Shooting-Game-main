@@ -16,6 +16,10 @@ public class GunScript : MonoBehaviour
     [SerializeField] private float bulletCooldown;
     [SerializeField] private int _bulletCount;
     [SerializeField] private int _bulletCountMax;
+    [SerializeField] public bool isDamageMult;
+    [SerializeField] public float bulletCooldownMult = 10f;
+    [SerializeField] public float damageMultiplier;
+    public float tempBulletCooldownMult = 10f;
     private IObjectPool<Bullet> objPool;
 
     [SerializeField] private bool collectionCheck = true;

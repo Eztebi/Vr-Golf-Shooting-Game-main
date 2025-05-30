@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_enemyData.attack != null)
         {
-            _enemyData.attack.ExecuteAttack(gameObject, _target);
+            _enemyData.attack.ExecuteAttack(this.gameObject, _target);
         }
     }
 

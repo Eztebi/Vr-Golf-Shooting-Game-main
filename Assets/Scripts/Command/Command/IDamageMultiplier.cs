@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class IDamageMultiplier : ICommand
 {
+    Bullet bullets;
+    int damageMultiplier;
+    public IDamageMultiplier(Bullet bullet)
+    {
+        this.bullets = bullet;
+    }
+
     public void Execute()
     {
-        throw new System.NotImplementedException();
+        bullets.AddDamage(damageMultiplier);
     }
 
     public void Undo()
     {
-        throw new System.NotImplementedException();
+
     }
 }

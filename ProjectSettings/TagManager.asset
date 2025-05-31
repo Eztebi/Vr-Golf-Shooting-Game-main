@@ -8,6 +8,8 @@ TagManager:
   - Mag
   - Enemy
   - Club
+  - FirePoint
+  - Bullet
   layers:
   - Default
   - TransparentFX

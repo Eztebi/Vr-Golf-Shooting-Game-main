@@ -18,10 +18,9 @@ MonoBehaviour:
   bulletAmount: 1
   _bulletPrefab: {fileID: 1901919456998057833, guid: 425b016c8bcb34f4db4ba39dcf674cc2, type: 3}
   muzzlePosition: {fileID: 8792499377683443982, guid: a7407ba79027ced468b1b3832d89b1c0, type: 3}
-  muzzleVelocity: 0
-  bulletCooldown: 0
-  _bulletCount: 0
-  _bulletCountMax: 0
+  muzzleVelocity: 1
+  bulletCooldown: 3
+  _bulletCountMax: 10
   collectionCheck: 1
   _defaultCapacityPool: 20
   _maxSizePool: 40

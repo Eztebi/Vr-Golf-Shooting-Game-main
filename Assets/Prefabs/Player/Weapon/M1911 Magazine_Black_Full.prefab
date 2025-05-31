@@ -249,6 +249,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1688796160857414, guid: 71d42f13891e48c4487496fd15802eda, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6392903449046095410}
+    - targetCorrespondingSourceObject: {fileID: 1688796160857414, guid: 71d42f13891e48c4487496fd15802eda, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3761662348374265664}
   m_SourcePrefab: {fileID: 100100000, guid: 71d42f13891e48c4487496fd15802eda, type: 3}
 --- !u!4 &8517758468399003860 stripped
 Transform:
@@ -431,3 +434,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03517986, y: 0.117651, z: 0.059084494}
   m_Center: {x: 0.0012227474, y: 0.04732739, z: 0.0042591672}
+--- !u!114 &-3761662348374265664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520495845510767858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0b8e579f9a88a4fb22385c07dc43d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealyDeactivation: 3
+  damage: 10

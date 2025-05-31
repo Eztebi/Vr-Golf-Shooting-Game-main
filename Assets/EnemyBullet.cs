@@ -4,52 +4,64 @@ using UnityEngine.Pool;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private float dealyDeactivation = 3f;
-    public int damage = 10;
+    [SerializeField] private float speed = 10f;
+    private Vector3 direction;
     private IObjectPool<EnemyBullet> objPool;
+    private Coroutine deactivationRoutine;
 
     public IObjectPool<EnemyBullet> ObjectPool { set => objPool = value; }
-    public void DeactivateHit()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = new Vector3(0, 0, 0);
-        rb.angularVelocity = new Vector3(0, 0, 0);
 
-        objPool.Release(this);
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir;
+        transform.rotation = Quaternion.LookRotation(dir);
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.collider.CompareTag("Player")) {
-    //        PlayerScript player = collision.collider.GetComponent<PlayerScript>();
-    //        player.TakeDamage(damage);
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+    private void Update()
+    {
+        transform.position += direction * speed * Time.deltaTime;
+    }
+
+    public void DeactivateHit()
+    {
+        if (objPool != null)
+        {
+            objPool.Release(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void DeactivateNoHit()
+    {
+        if (deactivationRoutine != null)
+            StopCoroutine(deactivationRoutine);
+        deactivationRoutine = StartCoroutine(TimeDeactivation(3f));
+    }
+
+    private IEnumerator TimeDeactivation(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        DeactivateHit();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             PlayerScript player = other.GetComponent<PlayerScript>();
-            player.TakeDamage(damage);
-            Destroy(this.gameObject);
+            if (player != null)
+            {
+                player.TakeDamage(10);
+            }
+            DeactivateHit();
         }
-    }
-    public void DeactivateNoHit()
-    {
-        StartCoroutine(TimeDeactivation(dealyDeactivation));
-    }
-    IEnumerator TimeDeactivation(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        DeactivateHit();
-    }
-    private void Update()
-    {
-        if (this.gameObject.activeSelf == true)
+        if (other.CompareTag("Bullet"))
         {
-            StartCoroutine(TimeDeactivation(dealyDeactivation));
-            return;
+            DeactivateHit();
         }
+
     }
 }

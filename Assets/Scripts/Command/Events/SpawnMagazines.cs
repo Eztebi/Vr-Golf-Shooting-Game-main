@@ -37,6 +37,7 @@ public class SpawnMagazines : MonoBehaviour
     private void Start()
     {
         objPool = new ObjectPool<Magazines>(CreateMag, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, _defaultCapacityPool, _maxSizePool);
+        Spawn();
     }
     public void Spawn()
     {

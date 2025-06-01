@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -10,7 +11,7 @@ public class RangedAttackSO : AttackSO
     public GameObject projectilePrefab;
     [SerializeField] private EnemyBullet _bulletPrefab;
     [SerializeField] private float muzzleVelocity = 10f;
-    [SerializeField] private float delayShoot = 1f;
+    [SerializeField] private float delayShoot = 3f;
 
     [Header("Pool Settings")]
     [SerializeField] private bool collectionCheck = true;
@@ -71,9 +72,10 @@ public class RangedAttackSO : AttackSO
 
             // Posiciona la bala en el FirePoint
             bullet.transform.position = firePoint.position;
-
+            Vector3 trackedTargert = target.position;
+            trackedTargert = new Vector3(trackedTargert.x, trackedTargert.y+1, trackedTargert.z);
             // Calcula la dirección hacia el objetivo
-            Vector3 direction = (target.position - firePoint.position).normalized;
+            Vector3 direction = (trackedTargert - firePoint.position).normalized;
 
             // Asigna dirección y orientación a la bala
             bullet.SetDirection(direction);

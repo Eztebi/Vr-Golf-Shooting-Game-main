@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -52,11 +53,27 @@ public class EnemyController : MonoBehaviour
         {
            if(_currentHealth <= 0)
             {
-                Destroy(this.gameObject);
+               StartCoroutine(DieAnimation());
             }
         }
     }
+    private IEnumerator DieAnimation()
+    {
+        float duration = 1.5f;
+        float elapsed = 0f;
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = startPos + Vector3.up * 2f;
 
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        
+        Destroy(gameObject);
+    }
     public void RecieveDamage(int damage)
     {
         Die();

@@ -12,4 +12,11 @@ public class SpawnPoint : MonoBehaviour
         }
 
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            hasEnemy = false;
+        }
+    }
 }

@@ -22,7 +22,6 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
     private float timeToSpawnMinion=0f;
     private void Awake()
     {
-        // Crear las fábricas con los datos
         meleeMinionFactory = new MeleeMinionFactory(meleeEnemies);
         rangedMinionFactory = new RangedMinionFactory(rangedEnemies);
         bossEnemyFactory = new BossEnemyFactory(bossEnemies);

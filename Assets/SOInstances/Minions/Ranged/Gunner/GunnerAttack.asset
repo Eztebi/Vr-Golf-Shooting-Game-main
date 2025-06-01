@@ -12,15 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a54b40a222e3e4c8da1c32facc4bce, type: 3}
   m_Name: GunnerAttack
   m_EditorClassIdentifier: 
-  weapon: {fileID: 7566018423792318153, guid: 425b016c8bcb34f4db4ba39dcf674cc2, type: 3}
   projectilePrefab: {fileID: 7566018423792318153, guid: 425b016c8bcb34f4db4ba39dcf674cc2, type: 3}
-  delayShoot: 2
-  bulletAmount: 1
   _bulletPrefab: {fileID: 1901919456998057833, guid: 425b016c8bcb34f4db4ba39dcf674cc2, type: 3}
-  muzzlePosition: {fileID: 8792499377683443982, guid: a7407ba79027ced468b1b3832d89b1c0, type: 3}
-  muzzleVelocity: 1
-  bulletCooldown: 3
-  _bulletCountMax: 10
+  muzzleVelocity: 0.5
+  delayShoot: 4
   collectionCheck: 1
   _defaultCapacityPool: 20
   _maxSizePool: 40

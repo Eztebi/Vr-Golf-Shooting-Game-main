@@ -9,9 +9,9 @@ public class Ball : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
-    public void Impulse(float force)
-    {
-        body.AddForce(this.transform.position*force);
-    }
+    //public void Impulse(float force)
+    //{
+    //    body.AddForce(this.transform.position*force,ForceMode.Impulse);
+    //}
    
 }

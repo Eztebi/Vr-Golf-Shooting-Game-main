@@ -10,6 +10,7 @@ TagManager:
   - Club
   - FirePoint
   - Bullet
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,9 @@ TagManager:
   - UI
   - Bullet
   - Gun
-  - 
-  - 
-  - 
+  - Player
+  - Club
+  - Ball
   - 
   - 
   - 

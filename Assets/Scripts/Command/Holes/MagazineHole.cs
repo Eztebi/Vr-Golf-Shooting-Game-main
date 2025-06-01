@@ -1,16 +1,21 @@
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MagazineHole : MonoBehaviour
 {
-    SpawnMagazines spawneer;
+    [SerializeField]private SpawnMagazines spawneer;
 
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ball"))
         {
-            if (spawneer == null) return;
-
+            if (spawneer == null) {
+                Debug.Log("No espawneoMagazines");
+                return;
+            }
+            
             else
             {
                 ICommand command = new ISpawnMagazines(spawneer, spawneer.magPrefabs);
@@ -22,7 +27,6 @@ public class MagazineHole : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawneer = GetComponent<SpawnMagazines>();
     }
 
     // Update is called once per frame

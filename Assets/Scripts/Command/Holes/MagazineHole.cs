@@ -21,17 +21,10 @@ public class MagazineHole : MonoBehaviour
                 ICommand command = new ISpawnMagazines(spawneer, spawneer.magPrefabs);
                 CommandInvoker.ExecuteCommand(command);
             }
+            Ball ball = other.GetComponent<Ball>();
+            ball.TriggerClubCollisionEvent();
+            ball.DeactivateHit();
         }
-        
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }

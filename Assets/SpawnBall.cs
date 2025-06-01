@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class SpawnBall : MonoBehaviour
+public class BotonScript : MonoBehaviour
 {
     [SerializeField] Ball ball;
     [SerializeField] Transform positionSpawn;
@@ -60,6 +60,7 @@ public class SpawnBall : MonoBehaviour
     void Start()
     {
         objPool = new ObjectPool<Ball>(CreateBall, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, _defaultCapacityPool, _maxSizePool);
+        Spawn();
     }
 
     // Update is called once per frame

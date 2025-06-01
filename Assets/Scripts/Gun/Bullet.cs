@@ -54,14 +54,16 @@ public class Bullet : MonoBehaviour
         tempDamage = damage;
         gun = GetComponentInParent<GunScript>();
     }
+    bool isDeactivating = false;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject.activeSelf == true)
+        if (!isDeactivating && this.gameObject.activeSelf)
         {
             StartCoroutine(TimeDeactivation(dealyDeactivation));
-            return;
+            isDeactivating = true;
         }
         if (!gun.isDamageMult)
         {

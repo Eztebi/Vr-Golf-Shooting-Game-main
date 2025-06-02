@@ -50,7 +50,7 @@ public class SpawnBall : MonoBehaviour
             Rigidbody rb = ballObj.GetComponent<Rigidbody>();
             rb.angularVelocity = Vector3.zero;
 
-            ballObj.DeactivateNoHit();
+            //ballObj.DeactivateNoHit();
         }
     }
 

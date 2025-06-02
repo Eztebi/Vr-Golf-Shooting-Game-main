@@ -37,10 +37,13 @@ public class Bullet : MonoBehaviour
         {
 
         }
-        else if (collision.collider.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
             EnemyController enemy = collision.collider.GetComponent<EnemyController>();
             enemy.RecieveDamage(damage);
+        }
+        if (collision.collider.CompareTag("EnemyBullet")){
+            DeactivateHit();
         }
         else
         {
@@ -65,14 +68,14 @@ public class Bullet : MonoBehaviour
             StartCoroutine(TimeDeactivation(dealyDeactivation));
             isDeactivating = true;
         }
-        if (!gun.isDamageMult)
-        {
-            damage = tempDamage;
-        }
-        else
-        {
-            damage = (int)gun.damageMultiplier;
-        }
+        //if (!gun.isDamageMult)
+        //{
+        //    damage = tempDamage;
+        //}
+        //else
+        //{
+        //    damage = (int)gun.damageMultiplier;
+        //}
         
 
     }

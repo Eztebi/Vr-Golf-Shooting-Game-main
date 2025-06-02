@@ -33,10 +33,6 @@ public class EnemyController : MonoBehaviour
         {
             Attack();
         }
-        if (Vector3.Distance(transform.position, _target.position) < 10f)
-        {
-            Attack();
-        }
     }
 
     private void Attack()
@@ -71,7 +67,7 @@ public class EnemyController : MonoBehaviour
             yield return null;
         }
 
-        
+        FindAnyObjectByType<RoundManager>().EnemigoEliminado();
         Destroy(gameObject);
     }
     public void RecieveDamage(int damage)

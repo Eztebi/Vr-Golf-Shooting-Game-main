@@ -60,6 +60,11 @@ public class EnemyBullet : MonoBehaviour
         }
         if (other.CompareTag("Bullet"))
         {
+            Bullet bullet = other.GetComponent<Bullet>();
+            if(bullet != null)
+            {
+                bullet.DeactivateHit();
+            }
             DeactivateHit();
         }
 

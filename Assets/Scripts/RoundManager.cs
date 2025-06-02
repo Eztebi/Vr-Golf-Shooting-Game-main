@@ -1,8 +1,10 @@
+using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
+    [SerializeField]private GameObject roundBoton;
     private int round;
     private int enemiesLeft;
     public Observer<int> EnemiesLeft = new Observer<int>(0);
@@ -17,7 +19,8 @@ public class RoundManager : MonoBehaviour
         EnemiesLeft.Invoke();
         Round.Invoke();
         EnemiesLeft.Value = enemiesLeft;
-        Round.Value = round;    
+        Round.Value = round;   
+        roundBoton.SetActive(true);
     }
     void NextRound()
     {
@@ -28,9 +31,37 @@ public class RoundManager : MonoBehaviour
     {
         //Invoke
     }
-    // Update is called once per frame
-    void Update()
+    public EnemySpawner spawner; // Asigna en el inspector
+
+    public void IniciarSiguienteRonda()
     {
-        
+        round++;
+        Round.Value = round;
+
+        int enemigosEnEstaRonda = CalcularEnemigos(round);
+        enemiesLeft = enemigosEnEstaRonda;
+        EnemiesLeft.Value = enemiesLeft;
+
+        spawner.IniciarRonda(enemigosEnEstaRonda);
+        roundBoton.SetActive(false);
+    }
+
+
+private int CalcularEnemigos(int ronda)
+{
+    return 5 + ronda * 2; // Puedes ajustar la curva de dificultad
+}
+
+
+public void EnemigoEliminado()
+    {
+        enemiesLeft--;
+        EnemiesLeft.Value = enemiesLeft;
+
+        if (enemiesLeft <= 0)
+        {
+            roundBoton.SetActive(true);
+            Debug.Log("Ronda completada");
+        }
     }
 }

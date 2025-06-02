@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
 
     Rigidbody body;
     private IObjectPool<Ball> objPool;
-    private float dealyDeactivation = 25;
+    //private float dealyDeactivation = 25;
 
     void Awake()
     {
@@ -30,10 +30,10 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public void DeactivateNoHit()
-    {
-        StartCoroutine(TimeDeactivation(dealyDeactivation));
-    }
+    //public void DeactivateNoHit()
+    //{
+    //    StartCoroutine(TimeDeactivation(dealyDeactivation));
+    //}
 
     IEnumerator TimeDeactivation(float delay)
     {
@@ -43,14 +43,14 @@ public class Ball : MonoBehaviour
 
     bool isDeactivating = false;
 
-    void Update()
-    {
-        if (!isDeactivating && this.gameObject.activeSelf)
-        {
-            StartCoroutine(TimeDeactivation(dealyDeactivation));
-            isDeactivating = true;
-        }
-    }
+    //void Update()
+    //{
+    //    if (!isDeactivating && this.gameObject.activeSelf)
+    //    {
+    //        StartCoroutine(TimeDeactivation(dealyDeactivation));
+    //        isDeactivating = true;
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {

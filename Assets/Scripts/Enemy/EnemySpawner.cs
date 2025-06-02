@@ -89,9 +89,11 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
     {
         return enemyType.GetEnemyData();
     }
+    private int enemigosSpawneados = 0;
+
     private void Update()
     {
-        if(roundStart)
+        if (roundInProgress && enemigosSpawneados < enemigosRestantes)
         {
             if (timeToSpawnMinion <= minionDelay)
             {
@@ -103,10 +105,20 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
                 if (position != null)
                 {
                     SpawnMinionEnemy(position.transform.position);
+                    enemigosSpawneados++;
                     timeToSpawnMinion = 0;
                 }
             }
         }
+    }
+    private int enemigosRestantes = 0;
+    private bool roundInProgress = false;
+
+    public void IniciarRonda(int cantidadEnemigos)
+    {
+        enemigosRestantes = cantidadEnemigos;
+        roundInProgress = true;
+        timeToSpawnMinion = 0f;
     }
 }
 

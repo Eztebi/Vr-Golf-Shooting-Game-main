@@ -8,15 +8,6 @@ public class PlayerScript : MonoBehaviour
     {
         Health.Invoke();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.W))
-        {
-            Health.Value += 10;
-        }
-    }
     public void TakeDamage(int damage)
     {
         Health.Value -= damage;

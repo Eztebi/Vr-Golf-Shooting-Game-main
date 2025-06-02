@@ -9,6 +9,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class GunScript : MonoBehaviour
 {
+    public Observer<int> Ammo = new Observer<int>(15);
+
     [SerializeField] private Transform GunPos;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform muzzlePosition;
@@ -27,6 +29,7 @@ public class GunScript : MonoBehaviour
     [SerializeField] private int _maxSizePool = 40;
 
     [SerializeField] XRGrabInteractable grabbable;
+
 
     private bool isHeld = false;
 
@@ -61,6 +64,8 @@ public class GunScript : MonoBehaviour
         grabbable.activated.AddListener(Shoot);
         grabbable.selectEntered.AddListener(OnSelectEntered);
         grabbable.selectExited.AddListener(OnSelectExited);
+        Ammo.Invoke();
+
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)
@@ -88,6 +93,7 @@ public class GunScript : MonoBehaviour
 
             bullObj.DeactivateNoHit();
             _bulletCount--;
+            Ammo.Value = _bulletCount;
         }
     }
 
@@ -97,6 +103,7 @@ public class GunScript : MonoBehaviour
         {
             Magazines mag = collision.collider.GetComponent<Magazines>();
             _bulletCount = _bulletCountMax;
+            Ammo.Value = _bulletCount;
             mag.DeactivateHit();
         }
     }

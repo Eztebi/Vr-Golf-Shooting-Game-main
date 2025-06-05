@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7566018423792318153, guid: 425b016c8bcb34f4db4ba39dcf674cc2, type: 3}
   _bulletPrefab: {fileID: 1901919456998057833, guid: 425b016c8bcb34f4db4ba39dcf674cc2, type: 3}
-  muzzleVelocity: 0.1
+  muzzleVelocity: 0.01
   delayShoot: 4
   collectionCheck: 1
   _defaultCapacityPool: 20

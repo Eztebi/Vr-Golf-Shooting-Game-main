@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class BotonScript : MonoBehaviour
+public class SpawnBall : MonoBehaviour
 {
     [SerializeField] Ball ball;
     [SerializeField] Transform positionSpawn;
@@ -12,7 +12,7 @@ public class BotonScript : MonoBehaviour
     [SerializeField] private int _defaultCapacityPool = 5;
     [SerializeField] private int _maxSizePool = 10;
 
-
+    [SerializeField]private bool hasBall;
     private Ball CreateBall()
     {
         Ball bulletInstance = Instantiate(ball);
@@ -23,12 +23,10 @@ public class BotonScript : MonoBehaviour
     private void OnGetFromPool(Ball pooledObject)
     {
         pooledObject.gameObject.SetActive(true);
-        pooledObject.OnClubCollision += Spawn; 
     }
 
     private void OnReleaseToPool(Ball pooledObject)
     {
-        pooledObject.OnClubCollision -= Spawn;
         pooledObject.gameObject.SetActive(false);
     }
     private void OnDestroyPooledObject(Ball pooledObject)
@@ -53,8 +51,21 @@ public class BotonScript : MonoBehaviour
            // ballObj.DeactivateNoHit();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ball"))
+        {
+            hasBall = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ball"))
+        {
+            hasBall = false;
+        }
+    }
 
-    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,6 +77,9 @@ public class BotonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (hasBall == false)
+        {
+            Spawn();
+        }
     }
 }

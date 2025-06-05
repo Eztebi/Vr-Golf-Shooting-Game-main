@@ -38,7 +38,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (deactivationRoutine != null)
             StopCoroutine(deactivationRoutine);
-        deactivationRoutine = StartCoroutine(TimeDeactivation(3f));
+        deactivationRoutine = StartCoroutine(TimeDeactivation(10f));
     }
 
     private IEnumerator TimeDeactivation(float delay)
@@ -67,6 +67,13 @@ public class EnemyBullet : MonoBehaviour
             }
             DeactivateHit();
         }
+        if (other.CompareTag("Club"))
+        {
+            DeactivateHit();
+        }
+        if (other.CompareTag("PlayerWall"))
+        {
 
+        }
     }
 }

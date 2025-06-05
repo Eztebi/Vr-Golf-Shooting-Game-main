@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Gunner
   health: 50
   speed: 10
-  prefab: {fileID: 7484540453538188571, guid: a7407ba79027ced468b1b3832d89b1c0, type: 3}
+  prefab: {fileID: 5446477390807014373, guid: b713585f24f940f4eadb10319818ef40, type: 3}
   attack: {fileID: 11400000, guid: 0a393200adad25a49bf352615ad7241c, type: 2}
   enemyType: 0

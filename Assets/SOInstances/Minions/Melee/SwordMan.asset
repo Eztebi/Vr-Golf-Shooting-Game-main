@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Sword Man
   health: 40
   speed: 0.2
-  prefab: {fileID: 2505044841528283178, guid: 63f0369f2e9224a44b9a5be5d95d8429, type: 3}
+  prefab: {fileID: 2676405798547930095, guid: 4b5b08dfd84e3c342b10a4e2ed977d48, type: 3}
   attack: {fileID: 11400000, guid: 8331690dd3caea542b9932b60ff7248d, type: 2}
   enemyType: 0

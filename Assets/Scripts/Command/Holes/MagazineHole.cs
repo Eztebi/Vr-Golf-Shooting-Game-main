@@ -22,7 +22,6 @@ public class MagazineHole : MonoBehaviour
                 CommandInvoker.ExecuteCommand(command);
             }
             Ball ball = other.GetComponent<Ball>();
-            ball.TriggerClubCollisionEvent();
             ball.DeactivateHit();
         }
         

@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
       
         if (data != null)
         {
-            GameObject enemyObj = GameObject.Instantiate(data.prefab, position, Quaternion.identity,this.transform);
+            GameObject enemyObj = GameObject.Instantiate(data.prefab, position, Quaternion.Euler(0f, 90f, 0f), this.transform);
             enemyObj.name = data.enemyName;
             EnemyController controller = enemyObj.GetComponent<EnemyController>();
             if (controller != null)

@@ -65,6 +65,9 @@ public class RangedAttackSO : AttackSO
     {
         if (objPool != null && target != null)
         {
+            user.GetComponent<Rigidbody>().angularDamping = 0f;
+            user.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            user.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             EnemyBullet bullet = objPool.Get();
             if (bullet == null) return;
 

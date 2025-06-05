@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class Ball : MonoBehaviour
 {
-    public event Action OnClubCollision;
+    //public event Action OnClubCollision;
 
     Rigidbody body;
     private IObjectPool<Ball> objPool;
+    private bool activateWallCollision;
     //private float dealyDeactivation = 25;
 
     void Awake()
@@ -21,19 +23,15 @@ public class Ball : MonoBehaviour
     {
         {
             if (body == null)
-                body = GetComponent<Rigidbody>(); 
+                body = GetComponent<Rigidbody>();
 
             body.linearVelocity = Vector3.zero;
             body.angularVelocity = Vector3.zero;
-
+            gameObject.layer = LayerMask.NameToLayer("Ball");
+            activateWallCollision = false;
             objPool.Release(this);
         }
     }
-
-    //public void DeactivateNoHit()
-    //{
-    //    StartCoroutine(TimeDeactivation(dealyDeactivation));
-    //}
 
     IEnumerator TimeDeactivation(float delay)
     {
@@ -41,31 +39,14 @@ public class Ball : MonoBehaviour
         DeactivateHit();
     }
 
-    bool isDeactivating = false;
 
-    //void Update()
-    //{
-    //    if (!isDeactivating && this.gameObject.activeSelf)
-    //    {
-    //        StartCoroutine(TimeDeactivation(dealyDeactivation));
-    //        isDeactivating = true;
-    //    }
-    //}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerExit(Collider collider)
     {
-        if (collision.collider.CompareTag("Club"))
+        if (collider.CompareTag("PlayerWall") && activateWallCollision == false)
         {
-            StartCoroutine(BallWaitToSpawn());
+            gameObject.layer = LayerMask.NameToLayer("BallCrossed");
+            activateWallCollision = true;
         }
-    }
-    IEnumerator BallWaitToSpawn()
-    {
-        yield return new WaitForSeconds(2f);
-        OnClubCollision?.Invoke();
-    }
-    public void TriggerClubCollisionEvent()
-    {
-        OnClubCollision?.Invoke();
     }
 }

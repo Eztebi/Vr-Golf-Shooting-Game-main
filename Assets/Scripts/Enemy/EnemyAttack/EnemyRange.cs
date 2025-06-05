@@ -10,7 +10,7 @@ public class RangedAttackSO : AttackSO
     [Header("Setup")]
     public GameObject projectilePrefab;
     [SerializeField] private EnemyBullet _bulletPrefab;
-    [SerializeField] private float muzzleVelocity = 10f;
+    [SerializeField] private float muzzleVelocity = .1f;
     [SerializeField] private float delayShoot = 3f;
 
     [Header("Pool Settings")]

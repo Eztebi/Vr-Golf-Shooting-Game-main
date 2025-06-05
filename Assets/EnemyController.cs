@@ -2,14 +2,16 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] public EnemyData _enemyData;
-    [SerializeField] Transform _target;
+    [SerializeField] private Transform _target;
 
     private int _currentHealth;
     private float _speed;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool _isDead = false;
+
     private void Start()
     {
         if (_enemyData != null)
@@ -25,11 +27,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (_target !=null)
+        if (_target != null)
         {
             Attack();
         }
@@ -43,16 +43,28 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void RecieveDamage(int damage)
     {
-        if(_enemyData != null)
+        if (_enemyData != null)
         {
-           if(_currentHealth <= 0)
+            _currentHealth -= damage;
+            Debug.Log(_currentHealth);
+
+            if (_currentHealth <= 0)
             {
-               StartCoroutine(DieAnimation());
+                Die();
             }
         }
     }
+
+    public void Die()
+    {
+        if (_isDead || _enemyData == null) return;
+        _isDead = true;
+
+        StartCoroutine(DieAnimation());
+    }
+
     private IEnumerator DieAnimation()
     {
         float duration = 1.5f;
@@ -67,17 +79,7 @@ public class EnemyController : MonoBehaviour
             yield return null;
         }
 
-        FindAnyObjectByType<RoundManager>().EnemigoEliminado();
+        FindAnyObjectByType<RoundManager>()?.EnemigoEliminado();
         Destroy(gameObject);
-    }
-    public void RecieveDamage(int damage)
-    {
-        Die();
-        if (_enemyData != null)
-        {
-            _currentHealth -= damage;
-            Debug.Log(_currentHealth);
-        }
-        Die();
     }
 }

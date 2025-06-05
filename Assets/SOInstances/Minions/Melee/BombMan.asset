@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BombMan
   m_EditorClassIdentifier: 
   enemyName: BombMan
-  health: 80
-  speed: 10
+  health: 40
+  speed: 0.2
   prefab: {fileID: 2505044841528283178, guid: ae30c9639736b134e97b9ef719e87cb9, type: 3}
   attack: {fileID: 11400000, guid: d0658fab62490af4299ccb4f16d6f06c, type: 2}
   enemyType: 0

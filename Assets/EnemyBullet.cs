@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 7f;
     private Vector3 direction;
     private IObjectPool<EnemyBullet> objPool;
     private Coroutine deactivationRoutine;

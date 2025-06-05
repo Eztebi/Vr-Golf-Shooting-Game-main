@@ -3,37 +3,31 @@ using UnityEngine;
 
 public class EnemyBomberMover : MonoBehaviour
 {
-    [SerializeField]private Transform _target;
-    [SerializeField] private Vector3[] _points;
-    private float _speed = 3f;
+    [SerializeField] private Transform _target;
+    [SerializeField] private float _speed = .005f;
     private float _range;
-    private float _damage;
+    private int _damage;
+    private bool _hasExploded = false;
+    private Vector3 _targetPosition;
 
-    public void Init(Vector3[] points, Transform target, float damage, float range)
+    public void Init(Transform target, int damage, float range)
     {
-        _points = points;
         _target = target;
         _range = range;
         _damage = damage;
+        _hasExploded = false;
 
-        StartCoroutine(MoveRoutine());
+        // Crear una posición desplazada arriba del jugador
+        _targetPosition = new Vector3(_target.position.x, _target.position.y + 1f, _target.position.z);
+
+        StartCoroutine(MoveToPlayer());
     }
 
-    private IEnumerator MoveRoutine()
+    private IEnumerator MoveToPlayer()
     {
-        foreach (var point in _points)
+        while (_target != null && Vector3.Distance(transform.position, _targetPosition) > _range)
         {
-            while (Vector3.Distance(transform.position, point) > 0.1f)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, point, _speed * Time.deltaTime);
-                yield return null;
-            }
-        }
-
-        // Ahora ir al jugador
-        while (Vector3.Distance(transform.position, _target.position) > _range)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
             yield return null;
         }
 
@@ -42,8 +36,10 @@ public class EnemyBomberMover : MonoBehaviour
 
     private void Explode()
     {
+        if (_hasExploded) return;
+        _hasExploded = true;
 
-        FindAnyObjectByType<RoundManager>()?.EnemigoEliminado();
-        Destroy(gameObject);
+        FindAnyObjectByType<PlayerScript>()?.TakeDamage(_damage);
+        GetComponent<EnemyController>()?.Die();
     }
 }

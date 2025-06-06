@@ -13,6 +13,7 @@ TagManager:
   - Ball
   - EnemyBullet
   - PlayerWall
+  - Obstacle
   layers:
   - Default
   - TransparentFX

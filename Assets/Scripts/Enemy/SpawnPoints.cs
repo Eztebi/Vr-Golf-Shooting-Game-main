@@ -13,8 +13,12 @@ public class SpawnPoints : MonoBehaviour
     {
         foreach (SpawnPoint t in points) {
             if (t.hasEnemy == false)
-                return t;   
-                }
+            {
+                t.hasEnemy = true;
+                return t;
+            }
+
+        }
         return null;
     }
     public void FreePoint()

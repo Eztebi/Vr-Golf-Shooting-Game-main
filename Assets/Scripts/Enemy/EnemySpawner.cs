@@ -37,19 +37,21 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
     public void SpawnMinionEnemy(Vector3 position)
     {
         EnemyData data = GetMinionRandom(rangedMinionFactory, meleeMinionFactory);
-      
+
         if (data != null)
         {
-            GameObject enemyObj = GameObject.Instantiate(data.prefab, position, Quaternion.Euler(0f, 90f, 0f), this.transform);
+            GameObject enemyObj = Instantiate(data.prefab, position, Quaternion.Euler(0f, 90f, 0f), this.transform);
             enemyObj.name = data.enemyName;
+
             EnemyController controller = enemyObj.GetComponent<EnemyController>();
             if (controller != null)
             {
                 controller._enemyData = data;
             }
+
+            RoundManager.Instance.EnemigoSpawneado(); 
         }
     }
-
     public void SpawnBoss(Vector3 position)
     {
         EnemyData data  = bossEnemyFactory.GetEnemyData();
@@ -90,27 +92,43 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
         return enemyType.GetEnemyData();
     }
     private int enemigosSpawneados = 0;
-
-    private void Update()
+    public void SpawnAllMinions()
     {
-        if (roundInProgress && enemigosSpawneados < enemigosRestantes)
+        for (int i = 0; i < 2; i++)
         {
-            if (timeToSpawnMinion <= minionDelay)
+            SpawnPoint point = spawnPoints.NextPoint();
+            if (point != null)
             {
-                timeToSpawnMinion += Time.deltaTime;
+                SpawnMinionEnemy(point.transform.position);
+                enemigosSpawneados++;
             }
             else
             {
-                SpawnPoint position = spawnPoints.NextPoint();
-                if (position != null)
-                {
-                    SpawnMinionEnemy(position.transform.position);
-                    enemigosSpawneados++;
-                    timeToSpawnMinion = 0;
-                }
+                Debug.LogWarning("No hay suficientes puntos de spawn libres.");
+                break;
             }
         }
     }
+    //private void Update()
+    //{
+    //    if (roundInProgress && enemigosSpawneados < enemigosRestantes)
+    //    {
+    //        if (timeToSpawnMinion <= minionDelay)
+    //        {
+    //            timeToSpawnMinion += Time.deltaTime;
+    //        }
+    //        else
+    //        {
+    //            SpawnPoint position = spawnPoints.NextPoint();
+    //            if (position != null)
+    //            {
+    //                SpawnMinionEnemy(position.transform.position);
+    //                enemigosSpawneados++;
+    //                timeToSpawnMinion = 0;
+    //            }
+    //        }
+    //    }
+    //}
     private int enemigosRestantes = 0;
     private bool roundInProgress = false;
 

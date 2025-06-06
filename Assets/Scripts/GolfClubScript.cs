@@ -33,10 +33,6 @@ private void OnSelectExited(SelectExitEventArgs args)
 }
 
 
-private void OnCollisionEnter(Collision collision)
-{
-    
-}
 
 void Update()
 {

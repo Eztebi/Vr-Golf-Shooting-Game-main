@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,5 +12,15 @@ public class PlayerScript : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health.Value -= damage;
+
+        if (Health.Value <= 0)
+        {
+            ReiniciarJuego();
+        }
+    }
+    private void ReiniciarJuego()
+    {
+        Scene sceneActual = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(sceneActual.name);
     }
 }

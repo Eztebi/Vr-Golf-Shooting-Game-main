@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -12,7 +13,9 @@ public class SpawnBall : MonoBehaviour
     [SerializeField] private int _defaultCapacityPool = 5;
     [SerializeField] private int _maxSizePool = 10;
 
-    [SerializeField]private bool hasBall;
+    private bool hasBall = false;
+    private Coroutine spawnCoroutine = null;
+    public bool startSpawning=false;
     private Ball CreateBall()
     {
         Ball bulletInstance = Instantiate(ball);
@@ -29,6 +32,7 @@ public class SpawnBall : MonoBehaviour
     {
         pooledObject.gameObject.SetActive(false);
     }
+
     private void OnDestroyPooledObject(Ball pooledObject)
     {
         Destroy(pooledObject.gameObject);
@@ -41,45 +45,61 @@ public class SpawnBall : MonoBehaviour
             Ball ballObj = objPool.Get();
             if (ballObj == null) return;
 
-            // Coloca la pelota en la posición deseada
             ballObj.transform.position = positionSpawn.position;
             ballObj.transform.rotation = positionSpawn.rotation;
 
             Rigidbody rb = ballObj.GetComponent<Rigidbody>();
             rb.angularVelocity = Vector3.zero;
-
-           // ballObj.DeactivateNoHit();
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") && startSpawning ==true)
         {
             hasBall = true;
+
+           
+            if (spawnCoroutine != null)
+            {
+                StopCoroutine(spawnCoroutine);
+                spawnCoroutine = null;
+            }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") && startSpawning == true)
         {
             hasBall = false;
+
+            
+            if (spawnCoroutine == null)
+            {
+                spawnCoroutine = StartCoroutine(DelayedSpawn());
+            }
         }
     }
 
+    private IEnumerator DelayedSpawn()
+    {
+        yield return new WaitForSeconds(1f);
+        Spawn();
+        spawnCoroutine = null;
+    }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        objPool = new ObjectPool<Ball>(CreateBall, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, _defaultCapacityPool, _maxSizePool);
-        Spawn();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (hasBall == false)
-        {
-            Spawn();
-        }
+        objPool = new ObjectPool<Ball>(
+            CreateBall,
+            OnGetFromPool,
+            OnReleaseToPool,
+            OnDestroyPooledObject,
+            collectionCheck,
+            _defaultCapacityPool,
+            _maxSizePool
+        );
+        
     }
 }

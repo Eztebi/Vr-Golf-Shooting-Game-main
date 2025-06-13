@@ -1,0 +1,2 @@
+C:\Sae\Tri4\IngenieriaSoftware\Vr\Vr-Golf-Shooting-Game-main\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Sae\Tri4\IngenieriaSoftware\Vr\Vr-Golf-Shooting-Game-main\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

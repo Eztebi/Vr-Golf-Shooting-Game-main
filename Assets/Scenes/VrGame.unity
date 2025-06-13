@@ -921,6 +921,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2862873912464123600, guid: 8561cd11ebc33094897c6442a6f6bf28, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3070755876385428780, guid: 8561cd11ebc33094897c6442a6f6bf28, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -980,6 +984,10 @@ PrefabInstance:
     - target: {fileID: 6282836225066617075, guid: 8561cd11ebc33094897c6442a6f6bf28, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166190008338061321, guid: 8561cd11ebc33094897c6442a6f6bf28, type: 3}
+      propertyPath: m_RenderShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7537462786138648294, guid: 8561cd11ebc33094897c6442a6f6bf28, type: 3}
       propertyPath: m_ConstrainProportionsScale

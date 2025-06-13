@@ -1,0 +1,19 @@
+# ninja log v5
+88	3052	7715068762459961	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	e4790d21a1cdfc59
+50	3084	7715068762580733	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	794187297bd76687
+17	3197	7715068763895017	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	9ce4c007dabd9896
+97	3141	7715068762988720	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ec3cd2aa228a4447
+120	3251	7715068764267428	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	a16d84c5b8c88bc4
+1	3205	7715068763960400	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	e0a8afe7dcabf21b
+77	3410	7715068766097559	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	4f03de086f08312b
+37	3533	7715068767326350	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	affa6ed3e82c75c
+3533	3698	7715068769024580	C:/Sae/Tri4/IngenieriaSoftware/Vr/Vr-Golf-Shooting-Game-main/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/293a6b3i/obj/arm64-v8a/libgame.so	5fdbaa89c09574a1
+12	1150	7715079439348102	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	794187297bd76687
+44	1164	7715079439564071	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	e4790d21a1cdfc59
+24	1197	7715079439891478	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	e0a8afe7dcabf21b
+37	1210	7715079440037154	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	ec3cd2aa228a4447
+17	1268	7715079440614788	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	9ce4c007dabd9896
+64	1293	7715079440872229	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	a16d84c5b8c88bc4
+55	1436	7715079442279856	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	4f03de086f08312b
+6	1500	7715079442930262	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	affa6ed3e82c75c
+1500	1586	7715079443825441	C:/Sae/Tri4/IngenieriaSoftware/Vr/Vr-Golf-Shooting-Game-main/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/293a6b3i/obj/arm64-v8a/libgame.so	5fdbaa89c09574a1

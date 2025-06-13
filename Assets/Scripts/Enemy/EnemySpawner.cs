@@ -109,26 +109,6 @@ public class EnemySpawner : MonoBehaviour, IEnemySelector
             }
         }
     }
-    //private void Update()
-    //{
-    //    if (roundInProgress && enemigosSpawneados < enemigosRestantes)
-    //    {
-    //        if (timeToSpawnMinion <= minionDelay)
-    //        {
-    //            timeToSpawnMinion += Time.deltaTime;
-    //        }
-    //        else
-    //        {
-    //            SpawnPoint position = spawnPoints.NextPoint();
-    //            if (position != null)
-    //            {
-    //                SpawnMinionEnemy(position.transform.position);
-    //                enemigosSpawneados++;
-    //                timeToSpawnMinion = 0;
-    //            }
-    //        }
-    //    }
-    //}
     private int enemigosRestantes = 0;
     private bool roundInProgress = false;
 

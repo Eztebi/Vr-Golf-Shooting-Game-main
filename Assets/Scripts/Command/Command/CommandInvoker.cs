@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CommandInvoker 
 {
-    private static Stack<ICommand> undoStack = new Stack<ICommand>();
+    private static Stack<ICommand> holeStack = new Stack<ICommand>();
     private static List<ICommand> recentCommands = new List<ICommand>(6);
     public static void ExecuteCommand(ICommand command)
     {
         command.Execute();
-        undoStack.Push(command);
+        holeStack.Push(command);
 
         recentCommands.Add(command);
         if (recentCommands.Count > 6)
@@ -28,9 +28,9 @@ public class CommandInvoker
 
     public static void UndoCommand()
     {
-        if(undoStack.Count > 0)
+        if(holeStack.Count > 0)
         {
-            ICommand activeCommand = undoStack.Pop();
+            ICommand activeCommand = holeStack.Pop();
             activeCommand.Undo();
         }
     }

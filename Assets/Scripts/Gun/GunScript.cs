@@ -115,7 +115,6 @@ public class GunScript : MonoBehaviour
            
            this.transform.position = GunPos.position;
            this.transform.rotation = GunPos.rotation;
-            //rb.MoveRotation(GunPos.rotation);
         }
     }
 }

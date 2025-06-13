@@ -6,8 +6,8 @@ public class SpawnMagazines : MonoBehaviour
 {
     private IObjectPool<Magazines> objPool;
     [SerializeField] private bool collectionCheck = true;
-    [SerializeField] private int _defaultCapacityPool = 20;
-    [SerializeField] private int _maxSizePool = 40;
+    [SerializeField] private int _defaultCapacityPool = 10;
+    [SerializeField] private int _maxSizePool = 20;
     [SerializeField] private List<GameObject> positionMags;
     public Magazines magPrefabs;
 
